@@ -4,8 +4,8 @@
 ## Anggota Kelompok
 | Nama           | NRP        | Kelas     |
 | ---            | ---        | ----------|
-|                |            |           |
-|                |            |           |
+| Salwa Nadia Maharani | 5025241041 | Program Jaringan D |
+| Naura Rossa Azalia | 5025241041 | Program Jaringan D |
 
 ## Link Youtube (Unlisted)
 Link ditaruh di bawah ini
