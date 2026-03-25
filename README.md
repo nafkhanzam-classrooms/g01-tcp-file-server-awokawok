@@ -159,13 +159,13 @@ client_states[sock] = {
 Mencegah client gagal mengirimkan datanya dikarenakan dalam model `select`, data tidak selalu dikirim dan diterima dalam satu waktu
 
 ##### 6. Implementasi Fitur
-a. `/list`
-Menampilkan daftar file yang ada dalam folder server
-b. `/upload`
-Tahap 1: set state
-Tahap 2: terima file dan simpan
-c. `/download`
-Server membaca file kemudian mengirim status (OK / ERROR) lalu mengirim isi file
+- `/list`
+menampilkan daftar file yang ada dalam folder server
+- `/upload`
+tahap 1: set state
+tahap 2: terima file dan simpan
+- `/download`
+server membaca file kemudian mengirim status (OK / ERROR) lalu mengirim isi file
 
 **`server-poll.py`**
 ### Deskripsi
@@ -192,7 +192,7 @@ Sama seperti pendekatan `select`, server membuat socket TCP, melakukan binding, 
 poller = select.poll()
 poller.register(server, select.POLLIN)
 ```
-- `POLLIN` menandakan socket siap dibaca
+`POLLIN` menandakan socket siap dibaca
 
 ##### 4. Event Loop
 ```py
@@ -210,16 +210,16 @@ poller.register(conn, select.POLLIN)
 Ketika ada client baru, maka server menerima koneksi dan mendaftarkan client ke `poll`
 
 ##### 6. Implementasi Fitur
-a. `/list`
-Menampilkan daftar file yang ada dalam folder server
-b. `/upload`
-Tahap 1: set state
-Tahap 2: terima file dan simpan
-c. `/download`
-Server membaca file kemudian mengirim status (OK / ERROR) lalu mengirim isi file
+- `/list`
+menampilkan daftar file yang ada dalam folder server
+- `/upload`
+tahap 1: set state
+tahap 2: terima file dan simpan
+- `/download`
+server membaca file kemudian mengirim status (OK / ERROR) lalu mengirim isi file
 
 ## Screenshot Hasil
-`sever-sync.py`
+`server-sync.py`
 
 ![WhatsApp Image 2026-03-25 at 21 55 44](https://github.com/user-attachments/assets/e6f2b870-4d9f-49a1-8bbc-1cae588990e8)
 
