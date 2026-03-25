@@ -71,7 +71,7 @@ while True:
                 del fd_to_socket[fd]
                 continue
 
-            # 🔥 HANDLE STATE
+            # HANDLE STATE
             state = client_states.get(sock)
 
             if state and state["mode"] == "upload":
