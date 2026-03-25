@@ -149,12 +149,6 @@ readable, _, _ = select.select(inputs, [], [])
 ```
 Server akan memilih socket yang memiliki kepentingan
 
-##### 4. Menggunakan Select 
-```py
-readable, _, _ = select.select(inputs, [], [])
-```
-Server akan memilih socket yang memiliki kepentingan
-
 ##### 5. State Management 
 ```py
 client_states[sock] = {
