@@ -147,7 +147,7 @@ List berisi semua socket yang dipantau, yaitu:
 ```py
 readable, _, _ = select.select(inputs, [], [])
 ```
-Server akan memilih socket yang memiliki kepentingan
+Server akan memilih socket yang siap dioperasikan
 
 ##### 5. State Management 
 ```py
