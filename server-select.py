@@ -38,7 +38,7 @@ server.listen(5)
 server.setblocking(False)
 
 inputs = [server]
-client_states = {}  # STATE PER CLIENT
+client_states = {} 
 
 print(f"Server SELECT jalan di {HOST}:{PORT}")
 
@@ -62,7 +62,7 @@ while True:
                 sock.close()
                 continue
 
-            # 🔥 CEK STATE DULU
+            # CEK STATE
             state = client_states.get(sock)
 
             if state and state["mode"] == "upload":
@@ -84,7 +84,7 @@ while True:
                 response = "\n".join(files) if files else "Tidak ada file"
                 send_msg(sock, response.encode())
 
-            # UPLOAD (SET STATE)
+            # UPLOAD 
             elif msg.startswith("/upload"):
                 try:
                     _, filename = msg.split()
