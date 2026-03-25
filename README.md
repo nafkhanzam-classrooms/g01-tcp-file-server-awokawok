@@ -4,13 +4,13 @@
 ## Anggota Kelompok
 | Nama           | NRP        | Kelas     |
 | ---            | ---        | ----------|
-| Salwa Nadia Maharani | 5025241041 | Program Jaringan D |
-| Naura Rossa Azalia | 5025241041 | Program Jaringan D |
+| Salwa Nadia Maharani | 5025241041 | Pemrograman Jaringan D |
+| Naura Rossa Azalia | 5025241041 | Pemrograman Jaringan D |
 
 ## Link Youtube (Unlisted)
 Link ditaruh di bawah ini
 ```
-
+https://youtu.be/lRTvD_PcLpg
 ```
 
 ## Penjelasan Program
@@ -20,14 +20,14 @@ Link ditaruh di bawah ini
 Client berfungsi sebagai penghubung antara pengguna dan server. Client dapat mengirimkan perintah ke server seperti melihat daftar file, mengunggah file, dan mengunduh file.
 #### Cara Kerja
 ##### 1. Membuat Koneksi 
-```
+```py
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((HOST, PORT))
 ```
 client membuat koneksi ke server menggunakan protokol TCP dengan alamat IP dan port tertentu
 
 ##### 2. Mengirim Data (Framing)
-```
+```py
 def send_msg(sock, data):
     header = struct.pack(">I", len(data))
     sock.sendall(header + data)
@@ -35,7 +35,7 @@ def send_msg(sock, data):
 Data dikirim menggunakan teknik **framing**, yaitu dengan menambahkan header berupa panjang data agar server dapat membaca data dengan benar
 
 ##### 3. Menerima Data
-```
+```py
 def recv_msg(sock):
 ```
 Client membaca header terlebih dahulu untuk mengetahui panjang data, kemudian membaca isi data sesuai panjanng tersebut.
@@ -51,7 +51,7 @@ Client mendukung beberapa perintah:
 Server synchronous adalah server yang hanya dapat menangani satu client dalam satu waktu. Server ini menggunakan metode blocking.
 #### Cara Kerja
 ##### 1. Setup Server
-```
+```py
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((HOST, PORT))
 server.listen()
@@ -59,13 +59,13 @@ server.listen()
 Server dibuat menggunakan socket TCP, kemudian di-bind ke alamat dan port tertentu untuk menerima koneksi.
 
 ##### 2. Menerima Koneksi
-```
+```py
 conn, addr = server.accept()
 ```
 Server menerima koneksi dari client. Proses ini bersifat blocking, sehingga server akan menunggu hingga ada client yang terhubung. 
 
 ##### 3. Menerima Data
-```
+```py
 data = recv_msg(conn)
 ```
 Server menerima data dari client. Selama proses ini, server tidak dapat melayani client lain.
@@ -85,25 +85,25 @@ Server memproses perintah dari client:
 Server thread adalah server yang dapat menangani banyak client secara bersamaan dengan menggunakan thread.
 #### Cara Kerja
 ##### 1. Import Threading
-```
+```py
 import threading
 ```
 Digunakan untuk menjalankan beberapa proses secara bersamaan dalam satu program.
 
 ##### 2. Fungsi Handler Client
-```
+```py
 def handle_client(conn, addr):
 ```
 Fungsi ini digunakan untuk menangani komunikasi dengan satu client.
 
 ##### 3. Membuat Thread
-```
+```py
 threading.Thread(target=handle_client, args=(conn, addr)).start()
 ```
 Setiap client yang terhubung akan dibuatkan thread baru sehingga dapat dilayani secara paralel.
 
 ##### 4. Loop Komunikasi 
-```
+```py
 while True:
 ```
 Setiap thread akan terus berjalan untuk melayani client masing-masing tanpa mengganggu client lain.
