@@ -119,3 +119,17 @@ Setiap thread akan terus berjalan untuk melayani client masing-masing tanpa meng
 
 
 ## Screenshot Hasil
+`sever-sync.py`
+
+![WhatsApp Image 2026-03-25 at 21 55 44](https://github.com/user-attachments/assets/e6f2b870-4d9f-49a1-8bbc-1cae588990e8)
+
+![WhatsApp Image 2026-03-25 at 21 55 44 (1)](https://github.com/user-attachments/assets/8ba455fb-2eb5-4d86-a47f-3918bd5b8ab5)
+
+
+`server-thread.py`
+
+![WhatsApp Image 2026-03-25 at 21 51 05](https://github.com/user-attachments/assets/def17735-8506-4026-ab3c-5c535da23a39)
+
+![WhatsApp Image 2026-03-25 at 21 51 05 (1)](https://github.com/user-attachments/assets/4b777e13-e112-443a-a8c6-0a066b303857)
+
+
