@@ -116,7 +116,113 @@ Setiap thread akan terus berjalan untuk melayani client masing-masing tanpa meng
 - Menggunakan lebih banyak resource (CPU & memory)
 - Kurang efisien jika jumlah client sangat banyak
 
+**`server-select.py`**
+### Deskripsi
+Teknik pemrograman menggunakan fitur `select()` yang memungkinkan server menangani banyak client secara bersamaan dalam satu thread. Pada pendekatan ini, server hanya memproses socket yang siap dibaca sehingga lebih efisien dalam penggunaan resource dibandingkan pendekatan multi-threading.
 
+#### Cara Kerja
+##### 1. Import Select
+```py
+import select
+```
+
+##### 2. Setup Server
+```py
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((HOST, PORT))
+server.listen(5)
+server.setblocking(False)
+```
+Server membuat socket TCP, melakukan binding, kemudian mengaktifkan mode non-blocking
+
+##### 3. Cek Socket 
+```py
+inputs = [server]
+```
+List berisi semua socket yang dipantau, yaitu:
+- socket server
+- socket client
+
+##### 4. Menggunakan Select 
+```py
+readable, _, _ = select.select(inputs, [], [])
+```
+Server akan memilih socket yang memiliki kepentingan
+
+##### 4. Menggunakan Select 
+```py
+readable, _, _ = select.select(inputs, [], [])
+```
+Server akan memilih socket yang memiliki kepentingan
+
+##### 5. State Management 
+```py
+client_states[sock] = {
+    "mode": "upload",
+    "filename": filename
+}
+```
+Mencegah client gagal mengirimkan datanya dikarenakan dalam model `select`, data tidak selalu dikirim dan diterima dalam satu waktu
+
+##### 6. Implementasi Fitur
+a. `/list`
+Menampilkan daftar file yang ada dalam folder server
+b. `/upload`
+Tahap 1: set state
+Tahap 2: terima file dan simpan
+c. `/download`
+Server membaca file kemudian mengirim status (OK / ERROR) lalu mengirim isi file
+
+**`server-poll.py`**
+### Deskripsi
+Pendekatan `poll` ini memiliki cara kerja yang sama dengan `select` yaitu bersifat ecent-driven dan non-blocking namun versi lebih scalable nya.
+
+#### Cara Kerja
+##### 1. Import Select
+```py
+import select
+```
+Pada pendekatan ini gunakan `poll()`
+
+##### 2. Setup Server
+```py
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((HOST, PORT))
+server.listen(5)
+server.setblocking(False)
+```
+Sama seperti pendekatan `select`, server membuat socket TCP, melakukan binding, kemudian mengaktifkan mode non-blocking
+
+##### 3. Inisialisasi Poll
+```py
+poller = select.poll()
+poller.register(server, select.POLLIN)
+```
+- `POLLIN` menandakan socket siap dibaca
+
+##### 4. Event Loop
+```py
+events = poller.poll()
+for fd, flag in events:
+```
+Server melakukan loop untuk menunggu event
+
+##### 5. Handling Client Connection
+```py
+conn, addr = server.accept()
+conn.setblocking(False)
+poller.register(conn, select.POLLIN)
+```
+Ketika ada client baru, maka server menerima koneksi dan mendaftarkan client ke `poll`
+
+##### 6. Implementasi Fitur
+a. `/list`
+Menampilkan daftar file yang ada dalam folder server
+b. `/upload`
+Tahap 1: set state
+Tahap 2: terima file dan simpan
+c. `/download`
+Server membaca file kemudian mengirim status (OK / ERROR) lalu mengirim isi file
 
 ## Screenshot Hasil
 `sever-sync.py`
