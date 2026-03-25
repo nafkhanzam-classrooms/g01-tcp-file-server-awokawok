@@ -169,7 +169,7 @@ Server membaca file kemudian mengirim status (OK / ERROR) lalu mengirim isi file
 
 **`server-poll.py`**
 ### Deskripsi
-Pendekatan `poll` ini memiliki cara kerja yang sama dengan `select` yaitu bersifat ecent-driven dan non-blocking namun versi lebih scalable nya.
+Pendekatan `poll` ini memiliki cara kerja yang sama dengan `select` yaitu bersifat event-driven dan non-blocking namun versi lebih scalable nya.
 
 #### Cara Kerja
 ##### 1. Import Select
@@ -231,5 +231,19 @@ Server membaca file kemudian mengirim status (OK / ERROR) lalu mengirim isi file
 ![WhatsApp Image 2026-03-25 at 21 51 05](https://github.com/user-attachments/assets/def17735-8506-4026-ab3c-5c535da23a39)
 
 ![WhatsApp Image 2026-03-25 at 21 51 05 (1)](https://github.com/user-attachments/assets/4b777e13-e112-443a-a8c6-0a066b303857)
+
+`server-select.py`
+
+<img width="1213" height="793" alt="image" src="https://github.com/user-attachments/assets/1797b2dd-9038-4e01-987d-04b4a68eed16" />
+
+<img width="1212" height="791" alt="image" src="https://github.com/user-attachments/assets/c043207e-8151-4314-9e26-0b067684e6e0" />
+
+
+`server-poll.py`
+
+<img width="1212" height="787" alt="image" src="https://github.com/user-attachments/assets/04df2f0c-efb3-4fef-af6d-9bad0b8e3620" />
+
+<img width="1211" height="762" alt="image" src="https://github.com/user-attachments/assets/e2318ee0-16cc-4460-a494-ee7acd6c41f9" />
+
 
 
